@@ -1,56 +1,35 @@
-// This is a simple JavaScript file that adds interactivity to the HTML page
-// It defines a function to show an alert when a link is clicked
-function sayHello() {
-    alert("Hello, world from javascript!");
-}
-// This function will be called when the link is clicked
-// It shows an alert with a message
-// Ensure the DOM is fully loaded before attaching the event listener
-document.addEventListener("DOMContentLoaded", function() {
-    const link = document.getElementById("hello-link");
-    if (!link) {
-        console.error("Link with ID 'hello-link' not found.");
-        return;
-    }
-    link.addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        sayHello();
-    });
-});
+// myLineUp() prints all the data it receives, concatenates into one string,
+// logs to the console, and displays the selection on the page.
+function myLineUp(evt) {
+  evt.preventDefault();
 
-async function getRandomJoke() {
-    return fetch('https://icanhazdadjoke.com/', {
-        headers: {
-            'Accept': 'text/plain'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .catch(error => {
-        console.error('There was a problem fetching the joke:', error);
-        return "Failed to fetch a joke. Please try again later.";
-    });
+  const form = evt.currentTarget;
+
+  // status (radio group with name="status")
+  const status = form.elements['status'].value;
+
+  // game date (select with name="gameDate")
+  const gameDate = form.elements['gameDate'].value;
+
+  // selected players (checkbox group name="players")
+  const players = Array.from(form.querySelectorAll('input[name="players"]:checked'))
+      .map(cb => cb.value);
+
+  // Print each piece to the console
+  console.log('Status:', status);
+  console.log('Date:', gameDate);
+  console.log('Players:', players);
+
+  // Concatenate all info into one readable string
+  const summary = `Status: ${status}; Date: ${gameDate}; Players: ${players.join(', ') || 'None'}`;
+  console.log(summary);
+
+  // Display on the web page
+  const out = document.getElementById('output');
+  out.textContent = summary;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const jokeButton = document.getElementById("joke-button");
-    if (!jokeButton) {
-        console.error("Button with ID 'joke-button' not found.");
-        return;
-    }
-    jokeButton.addEventListener("click", async function() {
-
-            const jokeDisplay = document.getElementById("joke-display");
-            if (!jokeDisplay) {
-                console.error("Element with ID 'joke-display' not found.");
-                return;
-            }
-            jokeDisplay.textContent = "Loading joke...";
-            const joke = await getRandomJoke();
-            jokeDisplay.textContent = joke;
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('lineupForm');
+  form.addEventListener('submit', myLineUp);
 });

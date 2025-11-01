@@ -1,25 +1,74 @@
 <!doctype html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>CS208 - Starter Code (UPDATE ME)!</title>
-  <meta name="description" content="">
+  <title>Starting Lineup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <h1>HTML Rocks!!</h1>
-  <ul>
-  <li><a href="/hello">Click here to say hello</a></li>
-  <li><button id="hello-link">Click Me!</button></li>
-  <li><button id="joke-button">Dad Joke!</button></li>
+  <main class="container">
+    <h1>Starting Lineup</h1>
+
+    <form id="lineupForm">
+      <p>
+        <fieldset class="status-group">
+          <legend>Status:</legend>
+          <input type="radio" id="status-draft" name="status" value="Draft">
+          <label for="status-draft">Draft</label>
+
+          <input type="radio" id="status-final" name="status" value="Final" checked>
+          <label for="status-final">Final</label>
+        </fieldset>
+      </p>
+
+      <p>
+        <label for="gameDate">Date:</label>
+        <select name="gameDate" id="gameDate">
+          <option value="March 20">March 20</option>
+          <option value="March 24">March 24</option>
+          <option value="April 2">April 2</option>
+          <option value="April 6">April 6</option>
+          <option value="April 13">April 13</option>
+        </select>
+      </p>
+
+      <p>
+        <fieldset class="players-group">
+          <legend>Players:</legend>
+          <div class="players-list">
+            <div>
+              <input type="checkbox" id="p1" name="players" value="Aarav Agarwal">
+              <label for="p1">Aarav Agarwal</label>
+            </div>
+            <div>
+              <input type="checkbox" id="p2" name="players" value="Ava Johnson">
+              <label for="p2">Ava Johnson</label>
+            </div>
+            <div>
+              <input type="checkbox" id="p3" name="players" value="Julio Ortiz">
+              <label for="p3">Julio Ortiz</label>
+            </div>
+            <div>
+              <input type="checkbox" id="p4" name="players" value="Liam Rubio">
+              <label for="p4">Liam Rubio</label>
+            </div>
+            <div>
+              <input type="checkbox" id="p5" name="players" value="Emma Witherspoon">
+              <label for="p5">Emma Witherspoon</label>
+            </div>
+          </div>
+        </fieldset>
+      </p>
+
+      <p>
+        <input type="submit" value="Submit">
+      </p>
+
+      <p id="output" class="output" aria-live="polite"></p>
+    </form>
+  </main>
+
   <script src="script.js"></script>
-  </ul>
-  <img src="funny.png" alt="Funny Image" width="300" height="200">
-
-  <h2 id="joke-display"></h2>
 </body>
-
 </html>
